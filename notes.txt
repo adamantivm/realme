@@ -1,1 +1,4 @@
 betun apache configured in port 8077 through realme config: http://localhost:8077/
+
+TODO:
+- Enable unicode (e.g.: station names)

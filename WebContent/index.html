@@ -3,8 +3,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert realme here</title>
+<script src="http://code.jquery.com/jquery-1.7.2.js"></script>
 </head>
 <body>
+<script>
+        function initiate_geolocation() {  
+            navigator.geolocation.getCurrentPosition(handle_geolocation_query);  
+        }
+  
+        function handle_geolocation_query(position){  
+            alert('Lat: ' + position.coords.latitude + ' ' +  
+                  'Lon: ' + position.coords.longitude);  
+        }  
+</script>
 my cool html5 page
+<button id="btnInit" onclick="javascript:initiate_geolocation()">Init</button>
 </body>
 </html>
