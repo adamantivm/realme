@@ -2,8 +2,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert realme here</title>
-<script src="http://code.jquery.com/jquery-1.7.2.js"></script>
+<title>adamantivm's realme</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 </head>
 <body>
 <script>
@@ -12,11 +14,29 @@
         }
   
         function handle_geolocation_query(position){  
-            alert('Lat: ' + position.coords.latitude + ' ' +  
-                  'Lon: ' + position.coords.longitude);  
-        }  
+            var pos_str = 'Lat: ' + position.coords.latitude + ' ' + 'Lon: ' + position.coords.longitude;
+            var pp = $("#scrapArea")[0];
+            pp.innerHTML = pos_str;
+        }
+        $(document).bind('pageinit', function(event, data){
+        	initiate_geolocation();
+        });
 </script>
-my cool html5 page
-<button id="btnInit" onclick="javascript:initiate_geolocation()">Init</button>
+<div data-role="page">
+	<div data-role="header">
+		<h1>Ex-TBA :: Horarios</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>Estación origen:</p>
+		<ul data-role="listview" data-inset="true">
+			<li data-icon="false"><a href="#">Acura</a></li>
+			<li><a href="#">Audi</a></li>
+		</ul>
+		<a href="#" data-role="button" onclick="javascript:initiate_geolocation()">Buscar</a>
+		<p id="scrapArea">Hello world</p>
+	</div><!-- /content -->
+
+</div><!-- /page -->
 </body>
 </html>
