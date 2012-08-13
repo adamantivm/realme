@@ -3,40 +3,79 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>adamantivm's realme</title>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" />
+	<link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" /> 
+	
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
+	
+	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
+	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.flipbox.min.js"></script>
+	
+	<script type="text/javascript" src="js/datos.js"></script>
+	<script type="text/javascript" src="js/programa.js"></script>
 </head>
 <body>
 <script>
-        function initiate_geolocation() {  
-            navigator.geolocation.getCurrentPosition(handle_geolocation_query);  
-        }
-  
-        function handle_geolocation_query(position){  
-            var pos_str = 'Lat: ' + position.coords.latitude + ' ' + 'Lon: ' + position.coords.longitude;
-            var pp = $("#scrapArea")[0];
-            pp.innerHTML = pos_str;
-        }
-        $(document).bind('pageinit', function(event, data){
-        	initiate_geolocation();
-        });
+// Configurar el FlipDateBox (control de la hora) para que funcione como nos gusta
+// y en castellano 
+jQuery.extend(jQuery.mobile.datebox.prototype.options.lang.default, {
+	'timeFormat': 24,
+	'setTimeButtonLabel': "Aceptar",
+	'titleTimeDialogLabel': 'Hora de partida'
+});
 </script>
-<div data-role="page">
+<div data-role="page" id="index">
 	<div data-role="header">
 		<h1>Ex-TBA :: Horarios</h1>
 	</div><!-- /header -->
 
-	<div data-role="content">	
-		<p>Estación origen:</p>
-		<ul data-role="listview" data-inset="true">
-			<li data-icon="false"><a href="#">Acura</a></li>
-			<li><a href="#">Audi</a></li>
-		</ul>
-		<a href="#" data-role="button" onclick="javascript:initiate_geolocation()">Buscar</a>
-		<p id="scrapArea">Hello world</p>
-	</div><!-- /content -->
+	<div data-role="content">
+		<form action="buscar" method="post">
+			<legend>Estación de Origen:</legend>
+			<fieldset data-role="controlgroup">
+				<input type="radio" name="select-method" id="select-method-auto" value="auto" checked="checked" />
+		    	<label for="select-method-auto">La más cercana (buscando)</label>
+				<input type="radio" name="select-method" id="select-method-manual" value="manual"  />
+		    	<label for="select-method-manual">Elegir de la lista</label>
+	
+			    <select name="EstOri" id="EstOri" disabled="true">
+			    	<option value="RV">Rivadavia</option>
+			    	<option value="NZ">Nuñez</option>
+			    	<option value="BC">Belgrano C</option>
+			    	<option value="LT">Lisandro de la Torre</option>
+			    	<option value="RN">Retiro</option>
+			    </select>
+			    <!-- 
+			     -->
+		    </fieldset>
 
+		    <legend>Sentido:</legend>
+		    <fieldset data-role="controlgroup" data-type="horizontal">
+		    	<input type="radio" name="sentido" id="sentido-retiro" value="retiro" checked="checked" />
+		    	<label for="sentido-retiro">&nbsp;&nbsp;Retiro&nbsp;&nbsp;</label>
+		    	<input type="radio" name="sentido" id="sentido-tigre" value="tigre" />
+		    	<label for="sentido-tigre">&nbsp;&nbsp;Tigre&nbsp;&nbsp;</label>
+		    </fieldset> 
+
+		    <legend>Hora de partida:</legend>
+		    <fieldset data-role="controlgroup">
+		    	<input name="hora" id="hora" type="date" data-role="datebox" data-options='{"mode": "timeflipbox", "useInline": true, "hideInput": true, "useSetButton":false, "useImmediate":true}'>
+		    </fieldset>
+
+		    <legend>Día:</legend>
+		    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+		    	<input type="radio" name="dia" id="dia-habil" value="habil"/>
+		    	<label for="dia-habil">Lunes a Viernes</label>
+		    	<input type="radio" name="dia" id="dia-sabado" value="sabado" />
+		    	<label for="dia-sabado">Sábado</label>
+		    	<input type="radio" name="dia" id="dia-domingo" value="domingo" />
+		    	<label for="dia-domingo">Domingo o Feridado</label>
+		    </fieldset>
+
+			<button id="buscar" type="submit" data-theme="a" disabled="true">Buscar</button>
+		</form>
+	</div><!-- /content -->
 </div><!-- /page -->
 </body>
 </html>
