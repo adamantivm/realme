@@ -11,7 +11,9 @@
 	
 	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
 	<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.flipbox.min.js"></script>
-	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 	<script type="text/javascript" src="js/datos.js"></script>
 	<script type="text/javascript" src="js/programa.js"></script>
 </head>
@@ -46,9 +48,9 @@ jQuery.extend(jQuery.mobile.datebox.prototype.options.lang.default, {
 			    	<option value="LT">Lisandro de la Torre</option>
 			    	<option value="RN">Retiro</option>
 			    </select>
-			    <!-- 
-			     -->
 		    </fieldset>
+
+			<button id="buscar" type="submit" data-theme="a" disabled="true">Buscar</button>
 
 		    <legend>Sentido:</legend>
 		    <fieldset data-role="controlgroup" data-type="horizontal">
@@ -57,11 +59,6 @@ jQuery.extend(jQuery.mobile.datebox.prototype.options.lang.default, {
 		    	<input type="radio" name="sentido" id="sentido-tigre" value="tigre" />
 		    	<label for="sentido-tigre">&nbsp;&nbsp;Tigre&nbsp;&nbsp;</label>
 		    </fieldset> 
-
-		    <legend>Hora de partida:</legend>
-		    <fieldset data-role="controlgroup">
-		    	<input name="hora" id="hora" type="date" data-role="datebox" data-options='{"mode": "timeflipbox", "useInline": true, "hideInput": true, "useSetButton":false, "useImmediate":true}'>
-		    </fieldset>
 
 		    <legend>Día:</legend>
 		    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
@@ -73,7 +70,10 @@ jQuery.extend(jQuery.mobile.datebox.prototype.options.lang.default, {
 		    	<label for="dia-domingo">Domingo o Feridado</label>
 		    </fieldset>
 
-			<button id="buscar" type="submit" data-theme="a" disabled="true">Buscar</button>
+		    <legend>Hora de partida:</legend>
+		    <fieldset data-role="controlgroup">
+		    	<input name="hora" id="hora" type="date" data-role="datebox" data-options='{"mode": "timeflipbox", "useInline": true, "hideInput": true, "useSetButton":false, "useImmediate":true}'>
+		    </fieldset>
 		</form>
 	</div><!-- /content -->
 </div><!-- /page -->
