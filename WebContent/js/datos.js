@@ -1,4 +1,9 @@
 realme = {
+	lines: {
+		'tigre': ['T','CU','FB','VY','Z','BE','SW','AS','N','LL','OL','VZ','RV','NZ','BC','LT','RN'],
+		'mitre': ['BM','CG','FD','BJ','DR','CI','NR','AL','MZ','TF','RN'],
+		'suarez': ['JL','CH','BL','MA','SA','SM','MG','PY','UZ','DD','NR','AL','MZ','TF','RN']
+	},
 	stations: [{
 	    'name': 'José León Suarez',
 	    'id': 'JL',
@@ -149,6 +154,7 @@ realme = {
 	    'latlong': [-34.5906847, -58.3748395]
 	}],
 	
+	//	Calcular la estación más cercana a un punto geográfico dado
 	nearest: function realme_nearest( lat, long) {
 		//	TODO: Sanity checks
 	    var cercana = undefined;
@@ -164,3 +170,11 @@ realme = {
 	    return cercana;
 	}
 };
+//	TODO: Prevent multiple-loading
+//	Crear punteros id => estación dentro de realme.stations
+(function createPointers() {
+	var st = realme.stations;
+	for(var i=0;i<st.length;i++) {
+		st[st[i]['id']] = st[i];
+	}
+})();

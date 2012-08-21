@@ -13,7 +13,7 @@ function handle_geolocation_query(position) {
     
     //	Si el usuario no tocó la lista de estaciones manualmente, elegirla automáticamente ahora
     if(!('manually_selected' in app_status)) {
-    	$("#EstOri").val(app_status.nearest.form_code).selectmenu("refresh");
+    	$("#EstOri").val(app_status.nearest.id).selectmenu("refresh");
     }
     
     //	Ya se puede hacer la búsqueda
@@ -21,8 +21,17 @@ function handle_geolocation_query(position) {
 }
 
 $("#index").live('pageinit',function() {
+	//	Crear select con la lista de estaciones
+	$("#EstOri")[0].innerHTML = "";
+	var line = realme.lines['tigre'];
+	for(var i=0;i<line.length;i++) {
+		var station = realme.stations[line[i]];
+		$("#EstOri").append('<option value="'+ station['id'] +'">'+ station['name'] +'</option>')
+	}
+
 	//	Disparar la búsqueda de ubicación para localizar la estación más cercana 
 	initiate_geolocation();
+
 	//	Elegir el tipo de día (hábil, sábado, domingo, etc.) de acuerdo al día que es hoy
 	var dayOfWeek = Math.min(((new Date()).getDay()+1) % 7, 2);
 	names = ["sabado","domingo","habil"]
