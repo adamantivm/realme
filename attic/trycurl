@@ -1,0 +1,10 @@
+# http://www.mitresarmiento.com.ar/horarios.asp?EstOri=NZ&EstDes=AS&Hsale=10%3A00&Hllega=13%3A00&Dias=2&submit2.x=55&submit2.y=10
+# EstOri:NZ
+# EstDes:AS
+# Hsale:08%3A00
+# Hllega:20%3A00
+# Dias:2
+# submit2.x:55
+# submit2.y:10
+#
+curl --data "EstOri=NZ&EstDes=AS&Hsale=10%3A00&Hllega=13%3A00&Dias=2" http://www.mitresarmiento.com.ar/horarios.asp
